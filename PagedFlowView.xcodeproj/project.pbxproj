@@ -16,6 +16,15 @@
 		A3FB09211504D92600EE9194 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FB09201504D92600EE9194 /* ViewController.m */; };
 		A3FB09241504D92600EE9194 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FB09221504D92600EE9194 /* ViewController.xib */; };
 		A3FB092C1504DA6100EE9194 /* PagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FB092A1504DA6100EE9194 /* PagedFlowView.m */; };
+		A3FB093A150503D000EE9194 /* 0.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0932150503D000EE9194 /* 0.tiff */; };
+		A3FB093B150503D000EE9194 /* 1.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0933150503D000EE9194 /* 1.tiff */; };
+		A3FB093C150503D000EE9194 /* 2.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0934150503D000EE9194 /* 2.tiff */; };
+		A3FB093D150503D000EE9194 /* 3.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0935150503D000EE9194 /* 3.tiff */; };
+		A3FB093E150503D000EE9194 /* 4.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0936150503D000EE9194 /* 4.tiff */; };
+		A3FB093F150503D000EE9194 /* 5.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0937150503D000EE9194 /* 5.tiff */; };
+		A3FB0940150503D000EE9194 /* 6.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0938150503D000EE9194 /* 6.tiff */; };
+		A3FB0941150503D000EE9194 /* 7.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0939150503D000EE9194 /* 7.tiff */; };
+		A3FB094C1505084400EE9194 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FB094B1505084400EE9194 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +43,15 @@
 		A3FB09231504D92600EE9194 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		A3FB092A1504DA6100EE9194 /* PagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedFlowView.m; sourceTree = "<group>"; };
 		A3FB092B1504DA6100EE9194 /* PagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedFlowView.h; sourceTree = "<group>"; };
+		A3FB0932150503D000EE9194 /* 0.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 0.tiff; sourceTree = "<group>"; };
+		A3FB0933150503D000EE9194 /* 1.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 1.tiff; sourceTree = "<group>"; };
+		A3FB0934150503D000EE9194 /* 2.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 2.tiff; sourceTree = "<group>"; };
+		A3FB0935150503D000EE9194 /* 3.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 3.tiff; sourceTree = "<group>"; };
+		A3FB0936150503D000EE9194 /* 4.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 4.tiff; sourceTree = "<group>"; };
+		A3FB0937150503D000EE9194 /* 5.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 5.tiff; sourceTree = "<group>"; };
+		A3FB0938150503D000EE9194 /* 6.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 6.tiff; sourceTree = "<group>"; };
+		A3FB0939150503D000EE9194 /* 7.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 7.tiff; sourceTree = "<group>"; };
+		A3FB094B1505084400EE9194 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3FB094C1505084400EE9194 /* QuartzCore.framework in Frameworks */,
 				A3FB090E1504D92500EE9194 /* UIKit.framework in Frameworks */,
 				A3FB09101504D92500EE9194 /* Foundation.framework in Frameworks */,
 				A3FB09121504D92500EE9194 /* CoreGraphics.framework in Frameworks */,
@@ -70,6 +89,7 @@
 		A3FB090C1504D92500EE9194 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3FB094B1505084400EE9194 /* QuartzCore.framework */,
 				A3FB090D1504D92500EE9194 /* UIKit.framework */,
 				A3FB090F1504D92500EE9194 /* Foundation.framework */,
 				A3FB09111504D92500EE9194 /* CoreGraphics.framework */,
@@ -80,6 +100,7 @@
 		A3FB09131504D92500EE9194 /* PagedFlowView */ = {
 			isa = PBXGroup;
 			children = (
+				A3FB0931150503D000EE9194 /* images */,
 				A3FB092A1504DA6100EE9194 /* PagedFlowView.m */,
 				A3FB092B1504DA6100EE9194 /* PagedFlowView.h */,
 				A3FB091C1504D92600EE9194 /* AppDelegate.h */,
@@ -101,6 +122,21 @@
 				A3FB091B1504D92600EE9194 /* PagedFlowView-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3FB0931150503D000EE9194 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				A3FB0932150503D000EE9194 /* 0.tiff */,
+				A3FB0933150503D000EE9194 /* 1.tiff */,
+				A3FB0934150503D000EE9194 /* 2.tiff */,
+				A3FB0935150503D000EE9194 /* 3.tiff */,
+				A3FB0936150503D000EE9194 /* 4.tiff */,
+				A3FB0937150503D000EE9194 /* 5.tiff */,
+				A3FB0938150503D000EE9194 /* 6.tiff */,
+				A3FB0939150503D000EE9194 /* 7.tiff */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +192,14 @@
 			files = (
 				A3FB09181504D92500EE9194 /* InfoPlist.strings in Resources */,
 				A3FB09241504D92600EE9194 /* ViewController.xib in Resources */,
+				A3FB093A150503D000EE9194 /* 0.tiff in Resources */,
+				A3FB093B150503D000EE9194 /* 1.tiff in Resources */,
+				A3FB093C150503D000EE9194 /* 2.tiff in Resources */,
+				A3FB093D150503D000EE9194 /* 3.tiff in Resources */,
+				A3FB093E150503D000EE9194 /* 4.tiff in Resources */,
+				A3FB093F150503D000EE9194 /* 5.tiff in Resources */,
+				A3FB0940150503D000EE9194 /* 6.tiff in Resources */,
+				A3FB0941150503D000EE9194 /* 7.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +323,7 @@
 				A3FB09291504D92600EE9194 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

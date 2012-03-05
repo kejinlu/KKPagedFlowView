@@ -7,54 +7,84 @@
 //
 
 #import "ViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ViewController
+@synthesize hFlowView;
+@synthesize vFlowView;
+@synthesize hPageControl;
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+- (void)dealloc {
+    [imageArray release];
+    
+    [super dealloc];
 }
+
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    imageArray = [[NSArray alloc] initWithObjects:@"0.tiff",@"1.tiff",@"2.tiff",@"3.tiff",@"4.tiff",@"5.tiff",@"6.tiff",@"7.tiff",nil];
+    
+    hFlowView.delegate = self;
+    hFlowView.dataSource = self;
+    hFlowView.pageControl = hPageControl;
+    hFlowView.minimumPageAlpha = 0.3;
+    hFlowView.minimumPageScale = 0.9;
+    
+    vFlowView.delegate = self;
+    vFlowView.dataSource = self;
+    vFlowView.minimumPageAlpha = 0.4;
+    vFlowView.minimumPageScale = 0.8;
+    vFlowView.orientation = PagedFlowViewOrientationVertical;
+    
 }
 
 - (void)viewDidUnload
 {
+    [imageArray release];
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark PagedFlowView Delegate
+- (CGSize)sizeForPageInFlowView:(PagedFlowView *)flowView;{
+    return CGSizeMake(200, 150);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark PagedFlowView Datasource
+//返回显示View的个数
+- (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView{
+    return [imageArray count];
+}
+
+//返回给某列使用的View
+- (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index{
+    UIImageView *imageView = (UIImageView *)[flowView dequeueReusableCell];
+    if (!imageView) {
+        imageView = [[[UIImageView alloc] init] autorelease];
+        imageView.layer.cornerRadius = 6;
+        imageView.layer.masksToBounds = YES;
+    }
+    imageView.image = [UIImage imageNamed:[imageArray objectAtIndex:index]];
+    return imageView;
 }
 
 @end

@@ -62,6 +62,7 @@ typedef enum{
 @property(nonatomic,retain)    UIPageControl       *pageControl;
 @property (nonatomic, assign) CGFloat minimumPageAlpha;
 @property (nonatomic, assign) CGFloat minimumPageScale;
+@property (nonatomic, assign) PagedFlowViewOrientation orientation;
 - (void)reloadData;
 
 //获取可重复使用的Cell

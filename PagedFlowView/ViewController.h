@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PagedFlowView.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<PagedFlowViewDelegate,PagedFlowViewDataSource>{
+    NSArray *imageArray;
+}
 
+@property (nonatomic, retain) IBOutlet PagedFlowView *hFlowView;
+@property (nonatomic, retain) IBOutlet PagedFlowView *vFlowView;
+@property (nonatomic, retain) IBOutlet UIPageControl *hPageControl;
 @end
