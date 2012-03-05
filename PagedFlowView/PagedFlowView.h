@@ -3,7 +3,7 @@
 //  taobao4iphone
 //
 //  Created by Lu Kejin on 3/2/12.
-//  Copyright (c) 2012 Taobao.com. All rights reserved.
+//  Copyright (c) 2012 geeklu.com. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

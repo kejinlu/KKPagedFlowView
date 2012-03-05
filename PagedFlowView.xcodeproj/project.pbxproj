@@ -15,6 +15,7 @@
 		A3FB091E1504D92600EE9194 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FB091D1504D92600EE9194 /* AppDelegate.m */; };
 		A3FB09211504D92600EE9194 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FB09201504D92600EE9194 /* ViewController.m */; };
 		A3FB09241504D92600EE9194 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FB09221504D92600EE9194 /* ViewController.xib */; };
+		A3FB092C1504DA6100EE9194 /* PagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FB092A1504DA6100EE9194 /* PagedFlowView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,15 +23,17 @@
 		A3FB090D1504D92500EE9194 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A3FB090F1504D92500EE9194 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A3FB09111504D92500EE9194 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		A3FB09151504D92500EE9194 /* PagedFlowView-Info.plist */ = {isa = PBXFileReference; path = "PagedFlowView-Info.plist"; sourceTree = "<group>"; };
+		A3FB09151504D92500EE9194 /* PagedFlowView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PagedFlowView-Info.plist"; sourceTree = "<group>"; };
 		A3FB09171504D92500EE9194 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A3FB09191504D92600EE9194 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A3FB091B1504D92600EE9194 /* PagedFlowView-Prefix.pch */ = {isa = PBXFileReference; path = "PagedFlowView-Prefix.pch"; sourceTree = "<group>"; };
-		A3FB091C1504D92600EE9194 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		A3FB091B1504D92600EE9194 /* PagedFlowView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PagedFlowView-Prefix.pch"; sourceTree = "<group>"; };
+		A3FB091C1504D92600EE9194 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A3FB091D1504D92600EE9194 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A3FB091F1504D92600EE9194 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		A3FB091F1504D92600EE9194 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A3FB09201504D92600EE9194 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A3FB09231504D92600EE9194 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		A3FB092A1504DA6100EE9194 /* PagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedFlowView.m; sourceTree = "<group>"; };
+		A3FB092B1504DA6100EE9194 /* PagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedFlowView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,8 @@
 		A3FB09131504D92500EE9194 /* PagedFlowView */ = {
 			isa = PBXGroup;
 			children = (
+				A3FB092A1504DA6100EE9194 /* PagedFlowView.m */,
+				A3FB092B1504DA6100EE9194 /* PagedFlowView.h */,
 				A3FB091C1504D92600EE9194 /* AppDelegate.h */,
 				A3FB091D1504D92600EE9194 /* AppDelegate.m */,
 				A3FB091F1504D92600EE9194 /* ViewController.h */,
@@ -164,6 +169,7 @@
 				A3FB091A1504D92600EE9194 /* main.m in Sources */,
 				A3FB091E1504D92600EE9194 /* AppDelegate.m in Sources */,
 				A3FB09211504D92600EE9194 /* ViewController.m in Sources */,
+				A3FB092C1504DA6100EE9194 /* PagedFlowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
