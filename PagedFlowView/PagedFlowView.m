@@ -377,6 +377,21 @@
     return [cell autorelease];
 }
 
+- (void)scrollToPage:(NSUInteger)pageNumber {
+    if (pageNumber < _pageCount) {
+        switch (orientation) {
+            case PagedFlowViewOrientationHorizontal:
+                [_scrollView setContentOffset:CGPointMake(_pageSize.width * pageNumber, 0) animated:YES];
+                break;
+            case PagedFlowViewOrientationVertical:
+                [_scrollView setContentOffset:CGPointMake(0, _pageSize.height * pageNumber) animated:YES];
+                break;
+        }
+        [self setPagesAtContentOffset:_scrollView.contentOffset];
+        [self refreshVisibleCellAppearance];
+    }
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark hitTest

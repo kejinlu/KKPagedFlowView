@@ -71,6 +71,8 @@ typedef enum{
 //获取可重复使用的Cell
 - (UIView *)dequeueReusableCell;
 
+- (void)scrollToPage:(NSUInteger)pageNumber;
+
 @end
 
 

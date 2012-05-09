@@ -90,4 +90,10 @@
     return imageView;
 }
 
+- (IBAction)pageControlValueDidChange:(id)sender {
+    UIPageControl *pageControl = sender;
+    [hFlowView scrollToPage:pageControl.currentPage];
+    [vFlowView scrollToPage:pageControl.currentPage];
+}
+
 @end
