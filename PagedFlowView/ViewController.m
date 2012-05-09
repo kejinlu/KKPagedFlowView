@@ -66,6 +66,9 @@
     return CGSizeMake(200, 150);
 }
 
+- (void)didScrollToPage:(NSInteger)pageNumber inFlowView:(PagedFlowView *)flowView {
+    NSLog(@"Scrolled to page # %d", pageNumber);
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -

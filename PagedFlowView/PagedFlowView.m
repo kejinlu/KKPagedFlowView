@@ -8,6 +8,10 @@
 
 #import "PagedFlowView.h"
 
+@interface PagedFlowView ()
+@property (nonatomic, assign, readwrite) NSInteger currentPageIndex;
+@end
+
 @implementation PagedFlowView
 @synthesize dataSource = _dataSource;
 @synthesize delegate = _delegate;
@@ -15,6 +19,8 @@
 @synthesize minimumPageAlpha = _minimumPageAlpha;
 @synthesize minimumPageScale = _minimumPageScale;
 @synthesize orientation;
+@synthesize currentPageIndex = _currentPageIndex;
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Private Methods
@@ -25,6 +31,7 @@
     _needsReload = YES;
     _pageSize = self.bounds.size;
     _pageCount = 0;
+    _currentPageIndex = 0;
     
     _minimumPageAlpha = 1.0;
     _minimumPageScale = 1.0;
@@ -402,21 +409,29 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     //如果有PageControl，计算出当前页码，并对pageControl进行更新
-    if (pageControl && [pageControl respondsToSelector:@selector(setCurrentPage:)]) {
-        NSInteger currentPageIndex = 0;
-        
-        switch (orientation) {
-            case PagedFlowViewOrientationHorizontal:
-                currentPageIndex = floor(_scrollView.contentOffset.x / _pageSize.width);
-                break;
-            case PagedFlowViewOrientationVertical:
-                currentPageIndex = floor(_scrollView.contentOffset.y / _pageSize.height);
-                break;
-            default:
-                break;
-        }
-        [pageControl setCurrentPage:currentPageIndex];
+    
+    NSInteger pageIndex;
+    
+    switch (orientation) {
+        case PagedFlowViewOrientationHorizontal:
+            pageIndex = floor(_scrollView.contentOffset.x / _pageSize.width);
+            break;
+        case PagedFlowViewOrientationVertical:
+            pageIndex = floor(_scrollView.contentOffset.y / _pageSize.height);
+            break;
+        default:
+            break;
     }
+    
+    if (pageControl && [pageControl respondsToSelector:@selector(setCurrentPage:)]) {
+        [pageControl setCurrentPage:pageIndex];
+    }
+    
+    if ([_delegate respondsToSelector:@selector(didScrollToPage:inFlowView:)] && _currentPageIndex != pageIndex) {
+        [_delegate didScrollToPage:pageIndex inFlowView:self];
+    }
+    
+    _currentPageIndex = pageIndex;
 }
 
 @end
