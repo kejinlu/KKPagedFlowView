@@ -41,7 +41,8 @@ typedef enum{
     BOOL                _needsReload;
     CGSize              _pageSize; //一页的尺寸
     NSInteger           _pageCount;  //总页数
-    
+    NSInteger           _currentPageIndex;
+
     NSMutableArray      *_cells;
     NSRange              _visibleRange;
     NSMutableArray      *_reusableCells;//如果以后需要支持reuseIdentifier，这边就得使用字典类型了
@@ -63,10 +64,14 @@ typedef enum{
 @property (nonatomic, assign) CGFloat minimumPageAlpha;
 @property (nonatomic, assign) CGFloat minimumPageScale;
 @property (nonatomic, assign) PagedFlowViewOrientation orientation;
+@property (nonatomic, assign, readonly) NSInteger currentPageIndex;
+
 - (void)reloadData;
 
 //获取可重复使用的Cell
 - (UIView *)dequeueReusableCell;
+
+- (void)scrollToPage:(NSUInteger)pageNumber;
 
 @end
 
@@ -74,6 +79,9 @@ typedef enum{
 @protocol  PagedFlowViewDelegate<NSObject>
 
 - (CGSize)sizeForPageInFlowView:(PagedFlowView *)flowView;
+
+@optional
+- (void)didScrollToPage:(NSInteger)pageNumber inFlowView:(PagedFlowView *)flowView;
 
 @end
 

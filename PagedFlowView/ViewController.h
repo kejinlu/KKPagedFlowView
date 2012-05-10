@@ -16,4 +16,7 @@
 @property (nonatomic, retain) IBOutlet PagedFlowView *hFlowView;
 @property (nonatomic, retain) IBOutlet PagedFlowView *vFlowView;
 @property (nonatomic, retain) IBOutlet UIPageControl *hPageControl;
+
+- (IBAction)pageControlValueDidChange:(id)sender;
+
 @end

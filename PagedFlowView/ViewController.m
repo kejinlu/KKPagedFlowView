@@ -66,6 +66,9 @@
     return CGSizeMake(200, 150);
 }
 
+- (void)didScrollToPage:(NSInteger)pageNumber inFlowView:(PagedFlowView *)flowView {
+    NSLog(@"Scrolled to page # %d", pageNumber);
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -85,6 +88,12 @@
     }
     imageView.image = [UIImage imageNamed:[imageArray objectAtIndex:index]];
     return imageView;
+}
+
+- (IBAction)pageControlValueDidChange:(id)sender {
+    UIPageControl *pageControl = sender;
+    [hFlowView scrollToPage:pageControl.currentPage];
+    [vFlowView scrollToPage:pageControl.currentPage];
 }
 
 @end
