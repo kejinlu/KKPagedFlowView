@@ -180,6 +180,8 @@
 
 
 - (void)setPagesAtContentOffset:(CGPoint)offset{
+    if ([_cells count] == 0)
+        return;
     //计算_visibleRange
     CGPoint startPoint = CGPointMake(offset.x - _scrollView.frame.origin.x, offset.y - _scrollView.frame.origin.y);
     CGPoint endPoint = CGPointMake(startPoint.x + self.bounds.size.width, startPoint.y + self.bounds.size.height);
@@ -320,6 +322,11 @@
         
         [_reusableCells removeAllObjects];
         _visibleRange = NSMakeRange(0, 0);
+        
+        //从supperView上移除cell
+        for (NSInteger i=0; i<[_cells count]; i++) {
+            [self removeCellAtIndex:i];
+        }
         
         //填充cells数组
         [_cells removeAllObjects];
