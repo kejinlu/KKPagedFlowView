@@ -69,18 +69,12 @@
     [superViewOfScrollView setBackgroundColor:[UIColor clearColor]];
     [superViewOfScrollView addSubview:_scrollView];
     [self addSubview:superViewOfScrollView];
-    [superViewOfScrollView release];
     
 }
 
 
 - (void)dealloc{
-    [_reusableCells release];
-    [_cells release];
     _scrollView.delegate = nil;
-    [_scrollView release];
-    [pageControl release];
-    [super dealloc];
 }
 
 - (void)queueReusableCell:(UIView *)cell{
@@ -388,13 +382,13 @@
 
 
 - (UIView *)dequeueReusableCell{
-    UIView *cell = [[_reusableCells lastObject] retain];
+    UIView *cell = [_reusableCells lastObject];
     if (cell)
     {
         [_reusableCells removeLastObject];
     }
     
-    return [cell autorelease];
+    return cell;
 }
 
 - (void)scrollToPage:(NSUInteger)pageNumber {
