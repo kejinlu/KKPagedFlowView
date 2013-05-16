@@ -38,7 +38,7 @@
 - (void)initialize{
     self.clipsToBounds = YES;
     
-    UITapGestureRecognizer *tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)] autorelease];
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self addGestureRecognizer:tapRecognizer];
     
     _needsReload = YES;
