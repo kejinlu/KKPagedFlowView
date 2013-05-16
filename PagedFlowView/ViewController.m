@@ -66,8 +66,12 @@
     return CGSizeMake(200, 150);
 }
 
-- (void)didScrollToPage:(NSInteger)pageNumber inFlowView:(PagedFlowView *)flowView {
-    NSLog(@"Scrolled to page # %d", pageNumber);
+- (void)flowView:(PagedFlowView *)flowView didScrollToPageAtIndex:(NSInteger)index {
+    NSLog(@"Scrolled to page # %d", index);
+}
+
+- (void)flowView:(PagedFlowView *)flowView didTapPageAtIndex:(NSInteger)index{
+    NSLog(@"Tapped on page # %d", index);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

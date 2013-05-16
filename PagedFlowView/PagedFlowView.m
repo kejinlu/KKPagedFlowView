@@ -24,9 +24,22 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Private Methods
+-(void)handleTapGesture:(UIGestureRecognizer*)gestureRecognizer{
+    NSInteger tappedIndex = 0;
+    CGPoint locationInScrollView = [gestureRecognizer locationInView:_scrollView];
+    if (CGRectContainsPoint(_scrollView.bounds, locationInScrollView)) {
+        tappedIndex = _currentPageIndex;
+        if ([self.delegate respondsToSelector:@selector(flowView:didTapPageAtIndex:)]) {
+            [self.delegate flowView:self didTapPageAtIndex:tappedIndex];
+        }
+    }
+}
 
 - (void)initialize{
     self.clipsToBounds = YES;
+    
+    UITapGestureRecognizer *tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)] autorelease];
+    [self addGestureRecognizer:tapRecognizer];
     
     _needsReload = YES;
     _pageSize = self.bounds.size;
@@ -449,8 +462,8 @@
         [pageControl setCurrentPage:pageIndex];
     }
     
-    if ([_delegate respondsToSelector:@selector(didScrollToPage:inFlowView:)] && _currentPageIndex != pageIndex) {
-        [_delegate didScrollToPage:pageIndex inFlowView:self];
+    if ([_delegate respondsToSelector:@selector(flowView:didScrollToPageAtIndex:)] && _currentPageIndex != pageIndex) {
+        [_delegate flowView:self didScrollToPageAtIndex:pageIndex];
     }
     
     _currentPageIndex = pageIndex;

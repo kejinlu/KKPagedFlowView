@@ -101,8 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				A3FB0931150503D000EE9194 /* images */,
-				A3FB092A1504DA6100EE9194 /* PagedFlowView.m */,
 				A3FB092B1504DA6100EE9194 /* PagedFlowView.h */,
+				A3FB092A1504DA6100EE9194 /* PagedFlowView.m */,
 				A3FB091C1504D92600EE9194 /* AppDelegate.h */,
 				A3FB091D1504D92600EE9194 /* AppDelegate.m */,
 				A3FB091F1504D92600EE9194 /* ViewController.h */,
