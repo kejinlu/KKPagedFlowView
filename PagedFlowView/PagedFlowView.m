@@ -7,6 +7,7 @@
 //
 
 #import "PagedFlowView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PagedFlowView ()
 @property (nonatomic, assign, readwrite) NSInteger currentPageIndex;
@@ -90,6 +91,7 @@
     [self queueReusableCell:cell];
     
     if (cell.superview) {
+        cell.layer.transform = CATransform3DIdentity;
         [cell removeFromSuperview];
     }
     
@@ -109,19 +111,16 @@
                 UIView *cell = [_cells objectAtIndex:i];
                 CGFloat origin = cell.frame.origin.x;
                 CGFloat delta = fabs(origin - offset);
-                
-                CGRect originCellFrame = CGRectMake(_pageSize.width * i, 0, _pageSize.width, _pageSize.height);//如果没有缩小效果的情况下的本该的Frame
-                
+                                                
                 [UIView beginAnimations:@"CellAnimation" context:nil];
                 if (delta < _pageSize.width) {
                     cell.alpha = 1 - (delta / _pageSize.width) * (1 - _minimumPageAlpha);
                     
-                    CGFloat inset = (_pageSize.width * (1 - _minimumPageScale)) * (delta / _pageSize.width)/2.0;
-                    cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(inset, inset, inset, inset));
+                    CGFloat pageScale = 1 - (delta / _pageSize.width) * (1 - _minimumPageScale);
+                    cell.layer.transform = CATransform3DMakeScale(pageScale, pageScale, 1);
                 } else {
                     cell.alpha = _minimumPageAlpha;
-                    CGFloat inset = _pageSize.width * (1 - _minimumPageScale) / 2.0 ;
-                    cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(inset, inset, inset, inset));
+                    cell.layer.transform = CATransform3DMakeScale(_minimumPageScale, _minimumPageScale, 1);
                 }
                 [UIView commitAnimations];
             }
@@ -134,19 +133,16 @@
                 UIView *cell = [_cells objectAtIndex:i];
                 CGFloat origin = cell.frame.origin.y;
                 CGFloat delta = fabs(origin - offset);
-                
-                CGRect originCellFrame = CGRectMake(0, _pageSize.height * i, _pageSize.width, _pageSize.height);//如果没有缩小效果的情况下的本该的Frame
-                
+                                
                 [UIView beginAnimations:@"CellAnimation" context:nil];
                 if (delta < _pageSize.height) {
                     cell.alpha = 1 - (delta / _pageSize.height) * (1 - _minimumPageAlpha);
                     
-                    CGFloat inset = (_pageSize.height * (1 - _minimumPageScale)) * (delta / _pageSize.height)/2.0;
-                    cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(inset, inset, inset, inset));
+                    CGFloat pageScale = 1 - (delta / _pageSize.height) * (1 - _minimumPageScale);
+                    cell.layer.transform = CATransform3DMakeScale(pageScale, pageScale, 1);
                 } else {
                     cell.alpha = _minimumPageAlpha;
-                    CGFloat inset = _pageSize.height * (1 - _minimumPageScale) / 2.0 ;
-                    cell.frame = UIEdgeInsetsInsetRect(originCellFrame, UIEdgeInsetsMake(inset, inset, inset, inset));
+                    cell.layer.transform = CATransform3DMakeScale(_minimumPageScale, _minimumPageScale, 1);
                 }
                 [UIView commitAnimations];
             }
