@@ -14,11 +14,6 @@
 @synthesize vFlowView;
 @synthesize hPageControl;
 
-- (void)dealloc {
-    [imageArray release];
-    
-    [super dealloc];
-}
 
 
 #pragma mark - View lifecycle
@@ -44,7 +39,6 @@
 
 - (void)viewDidUnload
 {
-    [imageArray release];
     
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -86,7 +80,7 @@
 - (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index{
     UIImageView *imageView = (UIImageView *)[flowView dequeueReusableCell];
     if (!imageView) {
-        imageView = [[[UIImageView alloc] init] autorelease];
+        imageView = [[UIImageView alloc] init];
         imageView.layer.cornerRadius = 6;
         imageView.layer.masksToBounds = YES;
     }

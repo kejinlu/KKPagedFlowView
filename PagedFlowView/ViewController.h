@@ -13,9 +13,9 @@
     NSArray *imageArray;
 }
 
-@property (nonatomic, retain) IBOutlet PagedFlowView *hFlowView;
-@property (nonatomic, retain) IBOutlet PagedFlowView *vFlowView;
-@property (nonatomic, retain) IBOutlet UIPageControl *hPageControl;
+@property (nonatomic, strong) IBOutlet PagedFlowView *hFlowView;
+@property (nonatomic, strong) IBOutlet PagedFlowView *vFlowView;
+@property (nonatomic, strong) IBOutlet UIPageControl *hPageControl;
 
 - (IBAction)pageControlValueDidChange:(id)sender;
 
