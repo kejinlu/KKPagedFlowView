@@ -187,7 +187,7 @@
         return;
     //计算_visibleRange
     CGPoint startPoint = CGPointMake(offset.x - _scrollView.frame.origin.x, offset.y - _scrollView.frame.origin.y);
-    CGPoint endPoint = CGPointMake(startPoint.x + self.bounds.size.width, startPoint.y + self.bounds.size.height);
+    CGPoint endPoint = CGPointMake(MAX(0, startPoint.x) + self.bounds.size.width, MAX(0, startPoint.y) + self.bounds.size.height);
     
     
     switch (orientation) {
