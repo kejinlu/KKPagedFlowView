@@ -213,6 +213,10 @@
             startIndex = MAX(startIndex - 1, 0);
             endIndex = MIN(endIndex + 1, [_cells count] - 1);
             
+            if (_visibleRange.location == startIndex && _visibleRange.length == (endIndex - startIndex + 1)) {
+                return;
+            }
+            
             _visibleRange.location = startIndex;
             _visibleRange.length = endIndex - startIndex + 1;
             
@@ -250,6 +254,10 @@
             //可见页分别向前向后扩展一个，提高效率
             startIndex = MAX(startIndex - 1, 0);
             endIndex = MIN(endIndex + 1, [_cells count] - 1);
+            
+            if (_visibleRange.location == startIndex && _visibleRange.length == (endIndex - startIndex + 1)) {
+                return;
+            }
             
             _visibleRange.location = startIndex;
             _visibleRange.length = endIndex - startIndex + 1;
