@@ -454,10 +454,10 @@
     
     switch (orientation) {
         case PagedFlowViewOrientationHorizontal:
-            pageIndex = floor(_scrollView.contentOffset.x / _pageSize.width);
+            pageIndex = floor(MAX(_scrollView.contentOffset.x, 0) / _pageSize.width);
             break;
         case PagedFlowViewOrientationVertical:
-            pageIndex = floor(_scrollView.contentOffset.y / _pageSize.height);
+            pageIndex = floor(MAX(_scrollView.contentOffset.y, 0) / _pageSize.height);
             break;
         default:
             break;
