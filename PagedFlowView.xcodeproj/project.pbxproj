@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3BF75CC1C47E1D3007E1C89 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3BF75CB1C47E1D3007E1C89 /* Default-568h@2x.png */; };
 		A3FB090E1504D92500EE9194 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FB090D1504D92500EE9194 /* UIKit.framework */; };
 		A3FB09101504D92500EE9194 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FB090F1504D92500EE9194 /* Foundation.framework */; };
 		A3FB09121504D92500EE9194 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FB09111504D92500EE9194 /* CoreGraphics.framework */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A3BF75CB1C47E1D3007E1C89 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A3FB09091504D92500EE9194 /* PagedFlowView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagedFlowView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3FB090D1504D92500EE9194 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A3FB090F1504D92500EE9194 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -72,6 +74,7 @@
 		A3FB08FE1504D92500EE9194 = {
 			isa = PBXGroup;
 			children = (
+				A3BF75CB1C47E1D3007E1C89 /* Default-568h@2x.png */,
 				A3FB09131504D92500EE9194 /* PagedFlowView */,
 				A3FB090C1504D92500EE9194 /* Frameworks */,
 				A3FB090A1504D92500EE9194 /* Products */,
@@ -165,7 +168,7 @@
 		A3FB09001504D92500EE9194 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Taobao.com;
 			};
 			buildConfigurationList = A3FB09031504D92500EE9194 /* Build configuration list for PBXProject "PagedFlowView" */;
@@ -191,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3FB09181504D92500EE9194 /* InfoPlist.strings in Resources */,
+				A3BF75CC1C47E1D3007E1C89 /* Default-568h@2x.png in Resources */,
 				A3FB09241504D92600EE9194 /* ViewController.xib in Resources */,
 				A3FB093A150503D000EE9194 /* 0.tiff in Resources */,
 				A3FB093B150503D000EE9194 /* 1.tiff in Resources */,
@@ -243,15 +247,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -259,11 +268,15 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -272,18 +285,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -299,6 +319,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PagedFlowView/PagedFlowView-Prefix.pch";
 				INFOPLIST_FILE = "PagedFlowView/PagedFlowView-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.geeklu.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -311,6 +332,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PagedFlowView/PagedFlowView-Prefix.pch";
 				INFOPLIST_FILE = "PagedFlowView/PagedFlowView-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.geeklu.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -9,18 +9,21 @@
 #import "PagedFlowView.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface PagedFlowView ()
+@interface PagedFlowView ()<UIScrollViewDelegate>
+
 @property (nonatomic, assign, readwrite) NSInteger currentPageIndex;
+@property(nonatomic, strong) UIScrollView *scrollView;
+@property(nonatomic, assign) BOOL needsReload;
+@property(nonatomic, assign) CGSize pageSize;
+@property(nonatomic, assign) NSUInteger pageCount;
+@property(nonatomic, strong) NSMutableArray *cells;
+@property(nonatomic, assign) NSRange visibleRange;
+@property(nonatomic, strong) NSMutableArray *reusableCells;//如果以后需要支持reuseIdentifier，这边就得使用字典类型了
+
 @end
 
 @implementation PagedFlowView
-@synthesize dataSource = _dataSource;
-@synthesize delegate = _delegate;
-@synthesize pageControl;
-@synthesize minimumPageAlpha = _minimumPageAlpha;
-@synthesize minimumPageScale = _minimumPageScale;
 @synthesize orientation;
-@synthesize currentPageIndex = _currentPageIndex;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -107,7 +110,7 @@
         case PagedFlowViewOrientationHorizontal:{
             CGFloat offset = _scrollView.contentOffset.x;
             
-            for (int i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
+            for (NSUInteger i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
                 UIView *cell = [_cells objectAtIndex:i];
                 CGFloat origin = cell.frame.origin.x;
                 CGFloat delta = fabs(origin - offset);
@@ -129,7 +132,7 @@
         case PagedFlowViewOrientationVertical:{
             CGFloat offset = _scrollView.contentOffset.y;
             
-            for (int i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
+            for (NSUInteger i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
                 UIView *cell = [_cells objectAtIndex:i];
                 CGFloat origin = cell.frame.origin.y;
                 CGFloat delta = fabs(origin - offset);
@@ -192,7 +195,7 @@
     
     switch (orientation) {
         case PagedFlowViewOrientationHorizontal:{
-            NSInteger startIndex = 0;
+            NSUInteger startIndex = 0;
             for (int i =0; i < [_cells count]; i++) {
                 if (_pageSize.width * (i +1) > startPoint.x) {
                     startIndex = i;
@@ -201,7 +204,7 @@
             }
             
             NSInteger endIndex = startIndex;
-            for (int i = startIndex; i < [_cells count]; i++) {
+            for (NSUInteger i = startIndex; i < [_cells count]; i++) {
                 //如果都不超过则取最后一个
                 if ((_pageSize.width * (i + 1) < endPoint.x && _pageSize.width * (i + 2) >= endPoint.x) || i+ 2 == [_cells count]) {
                     endIndex = i + 1;//i+2 是以个数，所以其index需要减去1
@@ -210,8 +213,12 @@
             }
             
             //可见页分别向前向后扩展一个，提高效率
-            startIndex = MAX(startIndex - 1, 0);
-            endIndex = MIN(endIndex + 1, [_cells count] - 1);
+            if (startIndex > 0) {
+                startIndex -= 1;
+            }
+            if (endIndex < self.cells.count - 1) {
+                endIndex += 1;
+            }
             
             if (_visibleRange.location == startIndex && _visibleRange.length == (endIndex - startIndex + 1)) {
                 return;
@@ -220,7 +227,7 @@
             _visibleRange.location = startIndex;
             _visibleRange.length = endIndex - startIndex + 1;
             
-            for (int i = startIndex; i <= endIndex; i++) {
+            for (NSUInteger i = startIndex; i <= endIndex; i++) {
                 [self setPageAtIndex:i];
             }
             
@@ -228,7 +235,7 @@
                 [self removeCellAtIndex:i];
             }
             
-            for (int i = endIndex + 1; i < [_cells count]; i ++) {
+            for (NSUInteger i = endIndex + 1; i < [_cells count]; i ++) {
                 [self removeCellAtIndex:i];
             }
             break;
@@ -243,7 +250,7 @@
             }
             
             NSInteger endIndex = startIndex;
-            for (int i = startIndex; i < [_cells count]; i++) {
+            for (NSUInteger i = startIndex; i < [_cells count]; i++) {
                 //如果都不超过则取最后一个
                 if ((_pageSize.height * (i + 1) < endPoint.y && _pageSize.height * (i + 2) >= endPoint.y) || i+ 2 == [_cells count]) {
                     endIndex = i + 1;//i+2 是以个数，所以其index需要减去1
@@ -262,7 +269,7 @@
             _visibleRange.location = startIndex;
             _visibleRange.length = endIndex - startIndex + 1;
             
-            for (int i = startIndex; i <= endIndex; i++) {
+            for (NSUInteger i = startIndex; i <= endIndex; i++) {
                 [self setPageAtIndex:i];
             }
             
@@ -270,7 +277,7 @@
                 [self removeCellAtIndex:i];
             }
             
-            for (int i = endIndex + 1; i < [_cells count]; i ++) {
+            for (NSUInteger i = endIndex + 1; i < [_cells count]; i ++) {
                 [self removeCellAtIndex:i];
             }
             break;
@@ -321,8 +328,8 @@
         if (_dataSource && [_dataSource respondsToSelector:@selector(numberOfPagesInFlowView:)]) {
             _pageCount = [_dataSource numberOfPagesInFlowView:self];
             
-            if (pageControl && [pageControl respondsToSelector:@selector(setNumberOfPages:)]) {
-                [pageControl setNumberOfPages:_pageCount];
+            if (self.pageControl && [self.pageControl respondsToSelector:@selector(setNumberOfPages:)]) {
+                [self.pageControl setNumberOfPages:_pageCount];
             }
         }
         
@@ -456,8 +463,8 @@
             break;
     }
     
-    if (pageControl && [pageControl respondsToSelector:@selector(setCurrentPage:)]) {
-        [pageControl setCurrentPage:pageIndex];
+    if (self.pageControl && [self.pageControl respondsToSelector:@selector(setCurrentPage:)]) {
+        [self.pageControl setCurrentPage:pageIndex];
     }
     
     if ([_delegate respondsToSelector:@selector(flowView:didScrollToPageAtIndex:)] && _currentPageIndex != pageIndex) {

@@ -33,38 +33,15 @@ typedef enum{
     PagedFlowViewOrientationVertical
 }PagedFlowViewOrientation;
 
-@interface PagedFlowView : UIView<UIScrollViewDelegate>{
-    
-    PagedFlowViewOrientation orientation;//默认为横向
-    
-    UIScrollView        *_scrollView;
-    BOOL                _needsReload;
-    CGSize              _pageSize; //一页的尺寸
-    NSInteger           _pageCount;  //总页数
-    NSInteger           _currentPageIndex;
+@interface PagedFlowView : UIView
+@property(nonatomic,strong) UIPageControl *pageControl;
+@property(nonatomic, assign) CGFloat minimumPageAlpha;
+@property(nonatomic, assign) CGFloat minimumPageScale;
+@property(nonatomic, assign) PagedFlowViewOrientation orientation;
+@property(nonatomic, assign, readonly) NSInteger currentPageIndex;
 
-    NSMutableArray      *_cells;
-    NSRange              _visibleRange;
-    NSMutableArray      *_reusableCells;//如果以后需要支持reuseIdentifier，这边就得使用字典类型了
-
-    UIPageControl       *pageControl; //可以是自己自定义的PageControl
-    
-    //如果希望非当前页的大小或者透明度发生变化可以设置这两个值
-    CGFloat _minimumPageAlpha;
-    CGFloat _minimumPageScale;
-
-    
-    id <PagedFlowViewDataSource> __weak _dataSource;
-    id <PagedFlowViewDelegate>   __weak _delegate;
-}
-
-@property(nonatomic,weak)   id <PagedFlowViewDataSource> dataSource;
-@property(nonatomic,weak)   id <PagedFlowViewDelegate>   delegate;
-@property(nonatomic,strong)    UIPageControl       *pageControl;
-@property (nonatomic, assign) CGFloat minimumPageAlpha;
-@property (nonatomic, assign) CGFloat minimumPageScale;
-@property (nonatomic, assign) PagedFlowViewOrientation orientation;
-@property (nonatomic, assign, readonly) NSInteger currentPageIndex;
+@property(nonatomic,weak) id <PagedFlowViewDataSource> dataSource;
+@property(nonatomic,weak) id <PagedFlowViewDelegate> delegate;
 
 - (void)reloadData;
 

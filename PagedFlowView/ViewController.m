@@ -61,11 +61,11 @@
 }
 
 - (void)flowView:(PagedFlowView *)flowView didScrollToPageAtIndex:(NSInteger)index {
-    NSLog(@"Scrolled to page # %d", index);
+    NSLog(@"Scrolled to page # %ld", (long)index);
 }
 
 - (void)flowView:(PagedFlowView *)flowView didTapPageAtIndex:(NSInteger)index{
-    NSLog(@"Tapped on page # %d", index);
+    NSLog(@"Tapped on page # %ld", (long)index);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
