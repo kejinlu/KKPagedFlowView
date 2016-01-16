@@ -186,41 +186,38 @@
 
 
 - (void)setPagesAtContentOffset:(CGPoint)offset{
-    if ([_cells count] == 0)
-        return;
-    //计算_visibleRange
-    CGPoint startPoint = CGPointMake(offset.x - _scrollView.frame.origin.x, offset.y - _scrollView.frame.origin.y);
-    CGPoint endPoint = CGPointMake(MAX(0, startPoint.x) + self.bounds.size.width, MAX(0, startPoint.y) + self.bounds.size.height);
+    
+    NSUInteger cellCount = [self.cells count];
+    
+    if (cellCount == 0) return;
+    
+    // scrollView的大小是由pageSize决定的，然后放置于PagedFlowView的正中心
+    CGPoint startPoint = CGPointMake(offset.x - CGRectGetMinX(_scrollView.frame), offset.y - CGRectGetMinY(_scrollView.frame));
+    CGPoint endPoint = CGPointMake(startPoint.x + CGRectGetWidth(self.bounds), startPoint.y + CGRectGetHeight(self.bounds));
     
     
     switch (orientation) {
         case PagedFlowViewOrientationHorizontal:{
             NSUInteger startIndex = 0;
-            for (int i =0; i < [_cells count]; i++) {
-                if (_pageSize.width * (i +1) > startPoint.x) {
-                    startIndex = i;
-                    break;
-                }
+            if (startPoint.x > 0) {
+                startIndex = floor(startPoint.x / self.pageSize.width);
             }
             
-            NSInteger endIndex = startIndex;
-            for (NSUInteger i = startIndex; i < [_cells count]; i++) {
-                //如果都不超过则取最后一个
-                if ((_pageSize.width * (i + 1) < endPoint.x && _pageSize.width * (i + 2) >= endPoint.x) || i+ 2 == [_cells count]) {
-                    endIndex = i + 1;//i+2 是以个数，所以其index需要减去1
-                    break;
-                }
+            NSInteger endIndex = ceil(endPoint.x / self.pageSize.width);
+            if (endIndex > cellCount - 1) {
+                endIndex = cellCount - 1;
             }
             
             //可见页分别向前向后扩展一个，提高效率
             if (startIndex > 0) {
                 startIndex -= 1;
             }
-            if (endIndex < self.cells.count - 1) {
+            if (endIndex < cellCount - 1) {
                 endIndex += 1;
             }
             
-            if (_visibleRange.location == startIndex && _visibleRange.length == (endIndex - startIndex + 1)) {
+            if (_visibleRange.location == startIndex &&
+                _visibleRange.length == (endIndex - startIndex + 1)) {
                 return;
             }
             
@@ -242,27 +239,27 @@
         }
         case PagedFlowViewOrientationVertical:{
             NSInteger startIndex = 0;
-            for (int i =0; i < [_cells count]; i++) {
-                if (_pageSize.height * (i +1) > startPoint.y) {
-                    startIndex = i;
-                    break;
-                }
+            NSUInteger cellCount = [self.cells count];
+            if (startPoint.y > 0) {
+                startIndex = floor(startPoint.y / self.pageSize.height);
             }
             
-            NSInteger endIndex = startIndex;
-            for (NSUInteger i = startIndex; i < [_cells count]; i++) {
-                //如果都不超过则取最后一个
-                if ((_pageSize.height * (i + 1) < endPoint.y && _pageSize.height * (i + 2) >= endPoint.y) || i+ 2 == [_cells count]) {
-                    endIndex = i + 1;//i+2 是以个数，所以其index需要减去1
-                    break;
-                }
+            NSInteger endIndex = ceil(endPoint.y / self.pageSize.height);
+            if (endIndex > cellCount - 1) {
+                endIndex = cellCount - 1;
             }
             
             //可见页分别向前向后扩展一个，提高效率
-            startIndex = MAX(startIndex - 1, 0);
-            endIndex = MIN(endIndex + 1, [_cells count] - 1);
+            if (startIndex > 0) {
+                startIndex -= 1;
+            }
             
-            if (_visibleRange.location == startIndex && _visibleRange.length == (endIndex - startIndex + 1)) {
+            if (endIndex < cellCount - 1) {
+                endIndex += 1;
+            }
+            
+            if (_visibleRange.location == startIndex &&
+                _visibleRange.length == (endIndex - startIndex + 1)) {
                 return;
             }
             
